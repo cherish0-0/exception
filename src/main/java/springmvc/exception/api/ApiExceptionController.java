@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 import springmvc.exception.exception.BadRequestException;
@@ -51,6 +52,13 @@ public class ApiExceptionController {
     @GetMapping("/api/response-status-ex2")
         public String responseStatusEx2() {
         throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
+    }
+
+    @GetMapping("/api/default-handler-ex")
+    public String defaultException(@RequestParam Integer data) {
+        return "ok";
+        // 이 메서드는 Integer 타입의 data 파라미터를 받는데, 만약 잘못된 타입이 들어오면
+        // 스프링이 기본적으로 제공하는 예외 처리 메커니즘에 의해 400 Bad Request가 발생한다.
     }
 
 
