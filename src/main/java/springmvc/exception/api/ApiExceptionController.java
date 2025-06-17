@@ -22,6 +22,16 @@ public class ApiExceptionController {
             throw new RuntimeException("잘못된 사용자");
         }
 
+        /**
+         * id가 "bad"인 경우 IllegalArgumentException 예외 발생
+         * 이 예외 발생했을 때 컨트롤러에서 처리하지 못하고 WAS까지 도달하면
+         * 코드가 500으로 나감
+         * 이를 400으로 처리할 예정 TODO
+         */
+        if (id.equals("bad")) {
+            throw new IllegalArgumentException("잘못된 입력 값");
+        }
+
         return new MemberDto(id, "hello " + id);
     }
 
