@@ -39,7 +39,7 @@ public class UserHandlerExceptionResolver implements HandlerExceptionResolver {
                     return new ModelAndView();
                 } else {
                     // HTML 응답 처리
-                    return new ModelAndView("error/400");
+                    return new ModelAndView("error/500");
                 }
             }
 
