@@ -3,9 +3,11 @@ package springmvc.exception.api;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import springmvc.exception.exception.BadRequestException;
 import springmvc.exception.exception.UserException;
 
@@ -45,6 +47,12 @@ public class ApiExceptionController {
     public String responseStatusEx1() {
         throw new BadRequestException();
     }
+
+    @GetMapping("/api/response-status-ex2")
+        public String responseStatusEx2() {
+        throw new ResponseStatusException(HttpStatus.NOT_FOUND, "error.bad", new IllegalArgumentException());
+    }
+
 
     @Data
     @AllArgsConstructor
